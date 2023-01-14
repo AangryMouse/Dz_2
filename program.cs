@@ -30,8 +30,7 @@ namespace MultyLock
             {
                 foreach (var wantedKey in keys)
                 {
-                    if (!monitorLocks.ContainsKey(wantedKey))
-                        Monitor.Enter(wantedKey);
+                    Monitor.Enter(monitorLocks[wantedKey]);
                 }
 
                 return new Disposer(keys.Reverse(), monitorLocks);
